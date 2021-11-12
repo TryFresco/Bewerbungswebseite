@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robin Würsch</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <!--Navogation und Scrollanimation / Vorlage source: https://codemyui.com/responsive-fullscreen-section-navigation-menu/-->
+
+
+    <script>
+        class StickyNavigation {
+
+            constructor() {
+                this.currentId = null;
+                this.currentTab = null;
+                this.tabContainerHeight = 70;
+                let self = this;
+                $('.et-hero-tab').click(function() {
+                    self.onTabClick(event, $(this));
+                });
+                $(window).scroll(() => {
+                    this.onScroll();
+                });
+                $(window).resize(() => {
+                    this.onResize();
+                });
+            }
+
+            onTabClick(event, element) {
+                event.preventDefault();
+                let scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight + 1;
+                $('html, body').animate({
+                    scrollTop: scrollTop
+                }, 600);
+            }
+
+            onScroll() {
+                this.checkTabContainerPosition();
+                this.findCurrentTabSelector();
+            }
+
+            onResize() {
+                if (this.currentId) {
+                    this.setSliderCss();
+                }
+            }
+
+            checkTabContainerPosition() {
+                let offset = $('.et-hero-tabs').offset().top + $('.et-hero-tabs').height() - this.tabContainerHeight;
+                if ($(window).scrollTop() > offset) {
+                    $('.et-hero-tabs-container').addClass('et-hero-tabs-container--top');
+                } else {
+                    $('.et-hero-tabs-container').removeClass('et-hero-tabs-container--top');
+                }
+            }
+
+            findCurrentTabSelector(element) {
+                let newCurrentId;
+                let newCurrentTab;
+                let self = this;
+                $('.et-hero-tab').each(function() {
+                    let id = $(this).attr('href');
+                    let offsetTop = $(id).offset().top - self.tabContainerHeight;
+                    let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
+                    if ($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
+                        newCurrentId = id;
+                        newCurrentTab = $(this);
+                    }
+                });
+                if (this.currentId != newCurrentId || this.currentId === null) {
+                    this.currentId = newCurrentId;
+                    this.currentTab = newCurrentTab;
+                    this.setSliderCss();
+                }
+            }
+
+            setSliderCss() {
+                let width = 0;
+                let left = 0;
+                if (this.currentTab) {
+                    width = this.currentTab.css('width');
+                    left = this.currentTab.offset().left;
+                }
+                $('.et-hero-tab-slider').css('width', width);
+                $('.et-hero-tab-slider').css('left', left);
+            }
+
+        }
+
+        new StickyNavigation();
+
+        function changeHTMLtoMyPerson() {
+            window.open("https://github.com/TryFresco");
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Hero -->
+    <section class="et-hero-tabs">
+        <h1>Robin Würsch</h1> <br/>
+        <h3>Projekte und Demonstration</h3><br/>
+        <h3>In meinem GitHub-Profil finden Sie zusätzlich zu den unten aufgeführten Projekten noch mehr Programme, welche ich in meiner Laufbahn realisiert habe.</h3>
+        <button class="button button4" onclick="changeHTMLtoMyPerson()">GitHub</button>
+        <div class="et-hero-tabs-container">
+            <a class="et-hero-tab" href="#tab-es6">Webseiteninformation</a>
+            <a class="et-hero-tab" href="#tab-flexbox">Java</a>
+            <a class="et-hero-tab" href="#tab-react">HTML/CSS/JS</a>
+            <a class="et-hero-tab" href="#tab-angular">C#</a>
+            <a class="et-hero-tab" href="#tab-other">Arduino, Systemtechnik und mehr</a>
+            <span class="et-hero-tab-slider"></span>
+        </div>
+    </section>
+
+    <!-- Main -->
+    <main class="et-main">
+        <section class="et-slide" id="tab-es6">
+            <h1>Webseiteninformation</h1><br /><br />
+
+            <h3>Diese Webseite dient als Demonstration meiner Fähigkeiten.</h3><br />
+            <h3> Es sind mehrere Projekte verlinkt und aufgeführt, die ich während meiner Laufbahn in der Informatikmittelschule realisiert und dokumentiert habe. Meistens verweisen die Links auf "Mahara", <br/> eine von meiner Berufsfachschule bereitgestellte
+                Platform, auf der man sich ein Portfolio erstellen kann. Dort befindet sich immer der Produktdownload, sowie ein Demonstrationsvideo. <br/><br/> Die Webseite, auf der Sie sich gerade befinden, habe ich im übrigen selber gemacht.</h3>
+
+        </section>
+        <section class="et-slide" id="tab-flexbox">
+            <h1 class="title">Java</h1>
+            <br />
+            <div class="container">
+                <div class="row">
+                    <br />
+
+                    <h3>Dies sind zwei Java-Projekte, die mir persönlich sehr gut gefallen und ich Spass beim Programmieren hatte. Das erste ist ein Blutalkoholrechner, mit dem man seinen aktuellen Promillegehalt im Blut berechnen lassen kann (Bitte nicht
+                        in Echt verwenden, es handelt sich um eine vereinfachte Formel :) ). Das zweite ist ein Spiel, welches sich "Bärenhöhlenspiel" nennt. Wie es genau gespielt wird, kann im Spiel selber nachgelesen werden.</h3><br/>
+
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="imageContainer">
+                            <img src="img/blutalk.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://portfolio.bbbaden.ch/view/view.php?t=SRay0g7IBizXsx8jqLkr" class="text">Blutalkoholrechner</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-4">
+                        <div class="imageContainer">
+                            <img src="img/baer.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://bbbaden-my.sharepoint.com/:f:/g/personal/r_wuersch_inf19_stud_bbbaden_ch/Ev0kSL8d2o5JlslH5F3S5bEB3hvffTDw_IKv3UXSSAUtJw?e=NhJcUs" class="text">Bärenhöhlenspiel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="et-slide" id="tab-react">
+            <h1>HTML/CSS/JS</h1>
+            <div class="container">
+                <div class="row">
+                    <br />
+
+                    <h3>Dies sind zwei meiner Lieblingswebseiten, die ich selber ralisiert habe. Das linke ist ein Währungsumrechner. Wie der Name schon sagt, kann man einen Betrag von einer Währung in eine x-beliebige andere Wärhung umrechnen lassen. Das
+                        ganze funktioniert mit einer API. Das rechte ist ein Spiel, bei dem man eine zufällig generierte Zahl erraten muss. Das Ziel dieses Projektes war es, sich mit Sessions vertraut zu machen.</h3><br/>
+
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="imageContainer">
+                            <img src="img/waehrung.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://bbbaden-my.sharepoint.com/:f:/g/personal/r_wuersch_inf19_stud_bbbaden_ch/ElXXVkTuUuhBocP6aWtopj4BhCEpneI_CRZfG8D7veOmJw?e=F5EHFv" class="text">Währungsumrechner</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-4">
+                        <div class="imageContainer">
+                            <img src="img/session.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://bbbaden-my.sharepoint.com/:f:/g/personal/r_wuersch_inf19_stud_bbbaden_ch/Ev34xa8HpuFEvgFWuhufjf0B2snrYCO-iu_LiNSFXdKH-A?e=SIfy14" class="text">Zahlenraten</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="et-slide" id="tab-angular">
+            <h1>C#</h1><br />
+            <div class="container">
+                <div class="row">
+                    <br />
+
+                    <h3>C# ist die Programmiersprache, mit der wir als erstes zu Beginn der Ausbildung gearbeitet haben, weswegen die Projekte auch etwas älter sind. Jedoch gefallen sie mir sehr. Denn vor allem als ich begonen habe, mit GUIs zu arbeiten,
+                        hat mir das Programmieren erst richtig angefangen hat Spass zu machen. </h3><br/>
+
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+
+                    <div class="col-4">
+                        <div class="imageContainer">
+                            <img src="img/memory.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://portfolio.bbbaden.ch/view/view.php?t=QMSyh0A8WKN1UnGzeRJi" class="text">Memory</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="imageContainer">
+                            <img src="img/discord.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://portfolio.bbbaden.ch/view/view.php?t=CZrIloVnkpgh9BiPdM4t" class="text">Discord-Bot</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="et-slide" id="tab-other">
+            <h1>Arduino, SQL und mehr</h1><br />
+            <div class="container">
+                <div class="row">
+                    <br />
+                    <h3>In dieser Sektion sind noch Projekte, welche nicht in die obigen Kategorien passen. Besonders das oben linke Arduino Projekt hat mir sehr viel Freude bereitet, da es etwas Abwechslung vom sonstigen sehr programmierlastigen Unterricht
+                        bot. Es handelt sich dabei um eine Wassergiessschaltung. Durch drei Sensoren erkennt die Schaltung, wann und ob eine Pflanze Wasser benötigt. Sie aktiviert den Umständen entsprechend eine Wasserpumpe, welche die Pflanze bewässert.
+                        Gleich daneben befindet sich ein SQL-Projekt. Da war es die Aufgabe, ein konzeptionelles, sowie das darauffolgende logische Datenmodell zu entwickeln. Das Szenario konnten wir frei erfinden. Und zum Schluss ist noch eine Android
+                        Applikation aufgeführt, mit der man verschiedene Sounds abspielen kann. Dieses Projekt war eine Gruppenarbeit. </h3><br/>
+
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+
+                    <div class="col-4">
+                        <div class="imageContainer">
+                            <img src="img/arduino.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://portfolio.bbbaden.ch/view/view.php?t=LUmtYd4GJQ9a5bHW8VCf" class="text">Wassergiessschaltung</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="imageContainer">
+                            <img src="img/SQL.PNG" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://portfolio.bbbaden.ch/view/view.php?t=TZuVSJY3N7rdBMfxo1FL" class="text">SQL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+
+                    <div class="col-4">
+                        <div class="imageContainer">
+                            <img src="img/android.png" alt="Avatar" class="image" style="width:100%">
+                            <div class="middle">
+                                <a href="https://portfolio.bbbaden.ch/view/view.php?t=KONit372Fcb9IRzG6sjQ" class="text">Android</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+
+                    </div>
+
+                    <div class="col-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

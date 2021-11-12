@@ -1,0 +1,191 @@
+    /* Navogation und Scrollanimation source: https://codemyui.com/responsive-fullscreen-section-navigation-menu/   */
+    
+    body {
+        font-family: "Century Gothic", 'Lato', sans-serif;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .et-hero-tabs,
+    .et-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+        background: rgb(165, 204, 209);
+        text-align: center;
+        padding: 0 2em;
+    }
+    
+    .et-hero-tabs h1,
+    .et-slide h1 {
+        font-size: 2rem;
+        margin: 0;
+        letter-spacing: 1rem;
+    }
+    
+    .et-hero-tabs h3,
+    .et-slide h3 {
+        font-size: 1rem;
+        opacity: 0.6;
+        font-weight: 1000;
+        color: black;
+        text-align: center;
+    }
+    
+    .et-hero-tabs-container {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 70px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        z-index: 10;
+    }
+    
+    .et-hero-tabs-container--top {
+        position: fixed;
+        top: 0;
+    }
+    
+    .et-hero-tab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        color: #000;
+        letter-spacing: 0.1rem;
+        transition: all 0.5s ease;
+        font-size: 0.8rem;
+    }
+    
+    .et-hero-tab:hover {
+        color: white;
+        background: rgba(102, 177, 241, 0.8);
+        transition: all 0.5s ease;
+    }
+    
+    .et-hero-tab-slider {
+        position: absolute;
+        bottom: 0;
+        width: 0;
+        height: 6px;
+        background: #6ca7dbcb;
+        transition: left 0.3s ease;
+    }
+    
+    @media (min-width: 800px) {
+        .et-hero-tabs h1,
+        .et-slide h1 {
+            font-size: 3rem;
+        }
+        .et-hero-tabs h3,
+        .et-slide h3 {
+            font-size: 1rem;
+        }
+        .et-hero-tab {
+            font-size: 1rem;
+        }
+    }
+    
+    .col-2 {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .demoImage {
+        width: 30em;
+        height: 24em;
+        padding: 30px;
+        margin: 30px;
+    }
+    
+    .imageContainer {
+        position: relative;
+        width: 100%;
+    }
+    
+    .image {
+        margin: 20px;
+        opacity: 1;
+        display: block;
+        width: 10em;
+        height: 8em;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+        border-radius: 1em;
+    }
+    
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    
+    .imageContainer:hover .image {
+        opacity: 0.3;
+    }
+    
+    .imageContainer:hover .middle {
+        opacity: 1;
+    }
+    
+    .text {
+        background-color: rgb(165, 204, 209);
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+        border-radius: 1em;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    .title {
+        text-align: center;
+    }
+    
+    .col-8 {
+        text-align: center;
+    }
+    
+    .button4 {
+        background-color: white;
+        color: black;
+        border: 2px solid #e7e7e7;
+    }
+    
+    .button4:hover {
+        background-color: #e7e7e7;
+        color: black;
+    }
+    
+    .button {
+        background-color: rgb(79, 126, 133);
+        /* Green */
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 1em;
+    }
+    
+    .meinePerson {
+        background-color: rgb(165, 204, 209);
+    }
